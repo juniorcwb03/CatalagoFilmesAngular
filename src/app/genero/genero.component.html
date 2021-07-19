@@ -1,0 +1,63 @@
+<div class="container"> 
+    <mat-card> 
+      <mat-toolbar color="accent"> 
+        <div align="center" style="color:white;text-align: right;"> 
+          Angular 7 - Generos - CRUD
+        </div>   
+      </mat-toolbar> 
+    <br><br> 
+      <mat-card-content> 
+        <form [formGroup]="GeneroForm"(ngSubmit)="onFormSubmit(GeneroForm.value)"> 
+                <table> 
+                  <tr> 
+                    <td class="tbl1"> 
+                      <mat-form-field class="demo-full-width"> 
+                        <input formControlName="Nome" matTooltip="Informe o nome do Genero" matInput placeholder="Nome do Genero"> 
+                      </mat-form-field> 
+                      <mat-error> 
+                        <span *ngIf="!GeneroForm.get('Nome').value && GeneroForm.get('Nome').touched"></span> 
+                      </mat-error> 
+                    </td> 
+                    <td class="tbl1"> 
+                      <mat-form-field class="demo-full-width"> 
+                        <input formControlName="Nome" matTooltip="Informe o Nome" matInput placeholder="Nome"> 
+                      </mat-form-field> 
+                      <mat-error> 
+                        <span *ngIf="!GeneroForm.get('Nome').value && GeneroForm.get('Nome').touched"></span> 
+                      </mat-error> 
+                    </td> 
+                  </tr> 
+                  <tr> 
+                    <td></td> 
+                    <td  class="content-center"> 
+                      <button type="submit" mat-raised-button color="accent"matTooltip="Clique no botão Enviar"[disabled]="!GeneroForm.valid">Enviar</button>     
+                      <button type="reset" mat-raised-button color="accent"matTooltip="Clique no botão Resetar" (click)="resetForm()">Resetar</button> 
+                    </td> 
+                    <td> 
+                      <p *ngIf="dataSaved" style="color:rgb(55, 0, 128);font-size:20px;font-weight:bold" Class="success" align="left"> 
+                        {{message}} 
+                      </p> 
+                    </td> 
+                  </tr> 
+                </table> 
+           <br><br> 
+          <table class="table" > 
+              <tr ngclass="btn-primary"> 
+                <th class="tbl2">Nome</th> 
+                <th class="tbl2">Edita</th> 
+                <th class="tbl2">Deleta</th> 
+              </tr> 
+              <tr *ngFor="let Genero of allGeneros | async"> 
+                <td class="tbl2">{{Genero.nome}}</td>  
+                <td class="tbl2"> 
+                  <button type="button" class="btn btn-info"matTooltip="Clique no botão para Editar"(click)="loadGeneroToEdit(Genero.GeneroId)">Editar</button> 
+                </td> 
+                <td class="tbl2"> 
+                  <button type="button" class="btn btn-danger"matTooltip="Clique no botão para Deletar"(click)="deleteGenero(Genero.GeneroId)">Deletar</button> 
+                </td> 
+              </tr>    
+            </table> 
+        </form> 
+      </mat-card-content> 
+    </mat-card> 
+    </div>
